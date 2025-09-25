@@ -6,68 +6,18 @@
     <title>Hello World</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="shapes-container"></div>
-    <div class="content">
-        <div class="main-content">
-            <h1>Hello, World!</h1>
-            <button id="lucky-button">I am lucky</button>
+<body class="relative font-sans overflow-hidden">
+    <div id="shapes-container" class="absolute top-0 left-0 w-full h-full z-0">
+        <!-- Floating shapes will be generated here by script.js -->
+    </div>
+    
+    <div class="absolute inset-0 flex flex-col justify-center items-center z-10">
+        <h1 class="text-6xl text-white font-bold text-center" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.2);">Hello, World!</h1>
+        <div class="w-full flex justify-center mt-8">
+            <button id="lucky-button" class="bg-white text-pink-400 py-4 px-8 rounded-full font-bold text-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">I am lucky</button>
         </div>
     </div>
 
-    <script>
-        const h1 = document.querySelector('h1');
-        const body = document.body;
-        const luckyButton = document.getElementById('lucky-button');
-
-        const colors = ['#ff9a9e', '#fad0c4', '#ffdde1', '#ee9ca7'];
-        let currentIndex = 0;
-
-        const phrases = [
-            "Dream Big, Work Hard",
-            "Shine Like a Star",
-            "Embrace the Journey",
-            "Create Your Sunshine",
-            "Believe in Yourself",
-            "Stay Strong and Sparkle",
-            "Choose Joy Today",
-            "Good Vibes Only"
-        ];
-
-        h1.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % colors.length;
-            body.style.setProperty('--gradient-start', colors[currentIndex]);
-            body.style.setProperty('--gradient-end', colors[(currentIndex + 2) % colors.length]);
-        });
-
-        luckyButton.addEventListener('click', () => {
-            const randomIndex = Math.floor(Math.random() * phrases.length);
-            h1.textContent = phrases[randomIndex];
-        });
-
-        const shapesContainer = document.querySelector('.shapes-container');
-        const shapeTypes = ['circle', 'square', 'triangle'];
-        const shapeColors = ['rgba(255, 255, 255, 0.5)', 'rgba(255, 221, 225, 0.7)', 'rgba(250, 208, 196, 0.7)'];
-
-        for (let i = 0; i < 15; i++) {
-            const shape = document.createElement('div');
-            const type = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
-            shape.classList.add('shape', type);
-
-            shape.style.left = `${Math.random() * 100}vw`;
-            shape.style.top = `${Math.random() * 100}vh`;
-            shape.style.backgroundColor = shapeColors[Math.floor(Math.random() * shapeColors.length)];
-            
-            const size = Math.random() * 80 + 20; // 20px to 100px
-            shape.style.width = `${size}px`;
-            shape.style.height = `${size}px`;
-
-            const duration = Math.random() * 20 + 15; // 15s to 35s
-            shape.style.animationDuration = `${duration}s`;
-            shape.style.animationDelay = `${Math.random() * 5}s`;
-
-            shapesContainer.appendChild(shape);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
